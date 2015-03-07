@@ -13,25 +13,15 @@ TicTacToe::TicTacToe()
     tableroGato.push_back(7);
     tableroGato.push_back(2);
 
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
 }
 
 
@@ -64,14 +54,9 @@ void TicTacToe::resetearDatos()
         tableroGato.pop_back();
     }
 
-    for(i=0;controlTablero1.size() != 0;i++)
+    for(i=0;graficoTablero.size() != 0;i++)
     {
-        controlTablero1.pop_back();
-    }
-
-    for(i=0;controlTablero2.size() != 0;i++)
-    {
-        controlTablero2.pop_back();
+        graficoTablero.pop_back();
     }
 
     tableroGato.push_back(8);
@@ -84,25 +69,15 @@ void TicTacToe::resetearDatos()
     tableroGato.push_back(7);
     tableroGato.push_back(2);
 
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-    controlTablero1.push_back('v');
-
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
-    controlTablero2.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
+    graficoTablero.push_back(32);
 
     this->actualizarDatos();
 }
@@ -116,19 +91,19 @@ void TicTacToe::imprimirTablero()
     cout<<"                   -------------------------------- "<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |    "<<controlTablero2[0]<<"     |    "<<controlTablero2[1]<<"     |    "<<controlTablero2[2]<<"     |"<<endl;
+    cout<<"                  |    "<<graficoTablero[0]<<"     |    "<<graficoTablero[1]<<"     |    "<<graficoTablero[2]<<"     |"<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                   -------------------------------- "<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |    "<<controlTablero2[3]<<"     |    "<<controlTablero2[4]<<"     |    "<<controlTablero2[5]<<"     |"<<endl;
+    cout<<"                  |    "<<graficoTablero[3]<<"     |    "<<graficoTablero[4]<<"     |    "<<graficoTablero[5]<<"     |"<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                   -------------------------------- "<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |    "<<controlTablero2[6]<<"     |    "<<controlTablero2[7]<<"     |    "<<controlTablero2[8]<<"     |"<<endl;
+    cout<<"                  |    "<<graficoTablero[6]<<"     |    "<<graficoTablero[7]<<"     |    "<<graficoTablero[8]<<"     |"<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                  |          |          |          | "<<endl;
     cout<<"                   -------------------------------- "<<endl;
@@ -166,12 +141,12 @@ void TicTacToe::actualizarDatos()
 
      for(i=0;i<p1.size();i++)
      {
-         controlTablero2[p1[i]-1] = 'X';
+         graficoTablero[p1[i]-1] = 'X';
      }
 
      for(i=0;i<p2.size();i++)
      {
-         controlTablero2[p2[i]-1] = 'O';
+         graficoTablero[p2[i]-1] = 'O';
      }
 
      this->imprimirTablero();
@@ -408,126 +383,165 @@ void TicTacToe::insertarNumeroMagicoP2(int numero)
 void TicTacToe::humanoVsHumano()
 {
    int numero = 0;
+   char tryAgain;
    int correcto = 0;
    int turnos = 0;
    int ganaP1 = 0;
    int ganaP2 = 0;
+   int quienEmpieza = 0;
 
    this->resetearDatos();
 
-   cout<<endl;
-   cout<<"Al primer jugador le correspondera X y al segundo O"<<endl;
-
-   while( turnos < 9)
+   while(quienEmpieza == 0)
    {
-      if(ganaP2 == 1)
-          break;
+       cout<<endl;
+       cout<<"1 para comenzar con X"<<endl;
+       cout<<"2 para comenzar con O"<<endl;
+       cout<<"Ingresa quien comenzara la partida: ";
+       cin>>quienEmpieza;
 
-      if(ganaP1 == 1)
-          break;
+       if(quienEmpieza == 1)
+           break;
 
-      else  if(turnos < 9)
-      {
-          while(correcto == 0)
-          {
-              cout<<endl;
-              cout<<"P1 Ingrese valor de 1-9 para colocarlo en el tablero: ";
-              cin>>numero;
+       if(quienEmpieza == 2)
+           break;
 
-              if(numero>=1 && numero<=9)
-              {
+       cout<<"Opcion incorrecta"<<endl;
+       quienEmpieza = 0;
+   }
 
-                  correcto = this->comprobarDisponibilidad(numero);
-                  if(correcto == 1)
-                     {
-                       this->insertarNumeroMagicoP1(numero);
-                       //this->actualizarDatos();
-                       controlTablero2[numero-1] = 'X';
-                       this->imprimirTablero();
-                       turnos = turnos+1;
-                       correcto = 0;
-                       ganaP1 = comprobarGanaP1();
-                       break;
-
-                      }
-
-                  else
-                  {
-                      cout<<"Error la casilla esta ocupada"<<endl;
-                      cout<<endl;
-                  }
-              }
-
-              else
-                  cout<<"Error numero fuera de rango"<<endl;
-          }
+       while( turnos < 9)
+       {
+          if(ganaP2 == 1)
+              break;
 
           if(ganaP1 == 1)
               break;
 
-          if(ganaP2 == 2)
+          else  if(turnos < 9)
+          {
+              while(correcto == 0)
+              {
+                  cout<<endl;
+                  cout<<"P1 Ingrese valor de 1-9 para colocarlo en el tablero: ";
+                  cin>>numero;
+
+                  if(numero>=1 && numero<=9)
+                  {
+
+                      correcto = this->comprobarDisponibilidad(numero);
+                      if(correcto == 1)
+                         {
+                           this->insertarNumeroMagicoP1(numero);
+
+                           if(quienEmpieza == 1)
+                           {
+                               graficoTablero[numero-1] = 'X';
+                           }
+
+                           else
+                               graficoTablero[numero-1] = 'O';
+
+                           this->imprimirTablero();
+                           turnos = turnos+1;
+                           correcto = 0;
+                           ganaP1 = comprobarGanaP1();
+                           break;
+
+                          }
+
+                      else
+                      {
+                          cout<<"Error la casilla esta ocupada"<<endl;
+                          cout<<endl;
+                      }
+                  }
+
+                  else
+                      cout<<"Error numero fuera de rango"<<endl;
+              }
+
+              if(ganaP1 == 1)
+                  break;
+
+              if(ganaP2 == 2)
+                  break;
+
+          }
+
+         if(ganaP1 == 1)
+             break;
+
+         if(ganaP2 == 1)
               break;
 
-      }
-
-     if(ganaP1 == 1)
-         break;
-
-     if(ganaP2 == 1)
-          break;
-
-     else if(turnos < 9)
-     {
-         while(correcto == 0)
+         else if(turnos < 9)
          {
-
-             cout<<endl;
-             cout<<"P2 Ingrese valor de 1-9 para colocarlo en el tablero: ";
-             cin>>numero;
-
-             if(numero>=1 && numero<=9)
+             while(correcto == 0)
              {
 
-                 correcto = this->comprobarDisponibilidad(numero);
-                 if(correcto == 1)
-                    {
-                      this->insertarNumeroMagicoP2(numero);
-                      //this->actualizarDatos();
-                      controlTablero2[numero-1] = 'O';
-                      this->imprimirTablero();
-                      turnos = turnos+1;
-                      correcto = 0;
-                      ganaP2 = comprobarGanaP2();
-                      break;
+                 cout<<endl;
+                 cout<<"P2 Ingrese valor de 1-9 para colocarlo en el tablero: ";
+                 cin>>numero;
 
+                 if(numero>=1 && numero<=9)
+                 {
+
+                     correcto = this->comprobarDisponibilidad(numero);
+                     if(correcto == 1)
+                        {
+                          this->insertarNumeroMagicoP2(numero);
+
+                          if(quienEmpieza == 1)
+                              graficoTablero[numero-1] = 'O';
+
+                          else
+                              graficoTablero[numero-1] = 'X';
+
+
+
+                          this->imprimirTablero();
+                          turnos = turnos+1;
+                          correcto = 0;
+                          ganaP2 = comprobarGanaP2();
+                          break;
+
+                         }
+
+                     else
+                     {
+                         cout<<"Error la casilla esta ocupada"<<endl;
+                         cout<<endl;
                      }
+                 }
 
                  else
-                 {
-                     cout<<"Error la casilla esta ocupada"<<endl;
-                     cout<<endl;
-                 }
+                     cout<<"Error numero fuera de rango"<<endl;
              }
-
-             else
-                 cout<<"Error numero fuera de rango"<<endl;
          }
-     }
 
-     if(ganaP2 == 1)
-         break;
+         if(ganaP2 == 1)
+             break;
 
-     if(ganaP1 == 1)
-         break;
+         if(ganaP1 == 1)
+             break;
 
-   }
+       }
+
 
    if(ganaP1 == 1)
-       cout<<"El Ganador es P1 Fin de la partida"<<endl;
+   cout<<"El Ganador es P1 Fin de la partida"<<endl;
 
    else if(ganaP2 == 1)
        cout<<"El Ganador es P2 Fin de la partida"<<endl;
 
    else
        cout<<"Se termino la partida es un empate"<<endl;
+
+   cout<<"Desea volver a jugar?     (Y/N) : ";
+   cin>>tryAgain;
+
+   if(tryAgain == 'Y' || tryAgain == 'y')
+   this->humanoVsHumano();
+
 }

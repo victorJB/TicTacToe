@@ -12,8 +12,7 @@ class TicTacToe
 private:
 
 vector <int> tableroGato;
-vector <char> controlTablero1;
-vector <char> controlTablero2;
+vector <char> graficoTablero;
 vector <int> p1;
 vector <int> p2;
 
