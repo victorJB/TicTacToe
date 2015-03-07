@@ -21,16 +21,14 @@ int main()
         cout<<"Ingrese una opcion: ";
         cin>>opcion;
 
+        if(opcion == 1)
+            tablero.humanovsMaquina();
+
         if(opcion == 2)
             tablero.humanoVsHumano();
 
         if(opcion == 5)
             tablero.imprimirTablero();
-
-        if(opcion == 10)
-        {
-            tablero.imprimirTablero();
-        }
 
     }
 
