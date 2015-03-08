@@ -27,8 +27,6 @@ int main()
         if(opcion == 2)
             tablero.humanoVsHumano();
 
-        if(opcion == 5)
-            tablero.imprimirTablero();
 
     }
 
