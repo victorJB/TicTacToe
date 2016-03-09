@@ -15,7 +15,9 @@ El usuario podrá jugar el juego del gato contra otro humano o contra la máquin
 Funciones desarrolladas:
 
 Humano Vs Humano
+
 Máquina Vs Humano
+
 Máquina vs Máquina
 
 Usted podrá seleccionar entre tres dificultades para competir contra la máquina.
