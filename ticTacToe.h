@@ -21,11 +21,9 @@ vector <int> p2Verdadero;
 public:
 
 TicTacToe();
-void verTablero();
 void resetearDatos();
-void humanoVsHumano();
+void humanoVsHumano(int quienEmpieza);
 void humanovsMaquina();
-void imprimirTablero();
 int comprobarDisponibilidad(int numero);
 int comprobarDisponibilidadMaquina(int numero);
 void actualizarDatos();
@@ -34,7 +32,14 @@ int comprobarGanaP2();
 int evaluacionMaquina(int turnoMaquina);
 void insertarNumeroMagicoP1(int numero);
 void insertarNumeroMagicoP2(int numero);
-
+int jugador1();
+int jugador2();
+int turnos;
+int dato;
+int quienEmpieza;
+int insertar;
+int turnodelJugador;
+int ganador;
 };
 
 

@@ -5,18 +5,9 @@
 
 TicTacToe::TicTacToe()
 {
+    turnos = 0;
+    turnodelJugador = 1;
 
-}
-
-
-void TicTacToe::verTablero()
-{
-    unsigned int i = 0;
-
-    for(i=0;i<tableroGato.size();i++)
-    {
-        cout<<this->tableroGato[i]<<" ";
-    }
 }
 
 void TicTacToe::resetearDatos()
@@ -74,36 +65,12 @@ void TicTacToe::resetearDatos()
     graficoTablero.push_back(32);
 
     this->actualizarDatos();
+
+    turnos = 0;
+    turnodelJugador = 1;
+    ganador = 0;
 }
 
-
-void TicTacToe::imprimirTablero()
-{
-
-    cout<<endl;
-    cout<<endl;
-    cout<<"                   -------------------------------- "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |    "<<graficoTablero[0]<<"     |    "<<graficoTablero[1]<<"     |    "<<graficoTablero[2]<<"     |"<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                   -------------------------------- "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |    "<<graficoTablero[3]<<"     |    "<<graficoTablero[4]<<"     |    "<<graficoTablero[5]<<"     |"<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                   -------------------------------- "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |    "<<graficoTablero[6]<<"     |    "<<graficoTablero[7]<<"     |    "<<graficoTablero[8]<<"     |"<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                  |          |          |          | "<<endl;
-    cout<<"                   -------------------------------- "<<endl;
-    cout<<endl;
-    cout<<endl;
-}
 
 int TicTacToe::comprobarDisponibilidad(int numero)
 {
@@ -163,7 +130,7 @@ void TicTacToe::actualizarDatos()
          graficoTablero[p2[i]-1] = 'O';
      }
 
-     this->imprimirTablero();
+     
 }
 
 int TicTacToe::comprobarGanaP1()
@@ -395,7 +362,93 @@ void TicTacToe::insertarNumeroMagicoP2(int numero)
         p2.push_back(2);
 }
 
-void TicTacToe::humanoVsHumano()
+int TicTacToe::jugador1()
+{
+    int correcto = 0;
+
+    if(this->turnos<9)
+    {
+        //if(this->comprobarGanaP2() == 1)
+            //ret
+
+        //if(this->comprobarGanaP1() == 1)
+            //break;
+
+        correcto = this->comprobarDisponibilidad(this->dato);
+
+        if(correcto == 1)
+           {
+             this->insertarNumeroMagicoP1(this->dato);
+
+             if(this->quienEmpieza == 1)
+             {
+                 graficoTablero[this->dato-1] = 'X';
+             }
+
+             else
+                 graficoTablero[this->dato-1] = 'O';
+
+             //this->imprimirTablero();
+             this->turnos = this->turnos+1;
+             //ganaP1 = comprobarGanaP1();
+             //break;
+             return 1;
+
+           }
+
+        return 0;
+    }
+
+    else
+    {
+        return 0;
+    }
+}
+
+int TicTacToe::jugador2()
+{
+    int correcto = 0;
+
+    if(this->turnos<9)
+    {
+        //if(this->comprobarGanaP2() == 1)
+            //break;
+
+        //if(this->comprobarGanaP1() == 1)
+            //break;
+
+        correcto = this->comprobarDisponibilidad(this->dato);
+
+        if(correcto == 1)
+           {
+             this->insertarNumeroMagicoP2(this->dato);
+
+             if(this->quienEmpieza == 1)
+             {
+                 graficoTablero[this->dato-1] = 'X';
+             }
+
+             else
+                 graficoTablero[this->dato-1] = 'O';
+
+             //this->imprimirTablero();
+             this->turnos = this->turnos+1;
+             //ganaP2 = comprobarGanaP2();
+             //break;
+             return 1;
+
+           }
+
+        return 0;
+    }
+
+    else
+    {
+        return 0;
+    }
+}
+
+void TicTacToe::humanoVsHumano(int quienEmpieza)
 {
    int numero = 0;
    char tryAgain;
@@ -403,28 +456,6 @@ void TicTacToe::humanoVsHumano()
    int turnos = 0;
    int ganaP1 = 0;
    int ganaP2 = 0;
-   int quienEmpieza = 0;
-
-
-   this->resetearDatos();
-
-   while(quienEmpieza == 0)
-   {
-       cout<<endl;
-       cout<<"1 para comenzar con X"<<endl;
-       cout<<"2 para comenzar con O"<<endl;
-       cout<<"Ingresa quien comenzara la partida: ";
-       cin>>quienEmpieza;
-
-       if(quienEmpieza == 1)
-           break;
-
-       if(quienEmpieza == 2)
-           break;
-
-       cout<<"Opcion incorrecta"<<endl;
-       quienEmpieza = 0;
-   }
 
        while( turnos < 9)
        {
@@ -436,10 +467,10 @@ void TicTacToe::humanoVsHumano()
 
           else  if(turnos < 9)
           {
+
+
               while(correcto == 0)
               {
-                  cout<<endl;
-                  cout<<"P1 Ingrese valor de 1-9 para colocarlo en el tablero: ";
                   cin>>numero;
 
                   if(numero>=1 && numero<=9)
@@ -458,7 +489,7 @@ void TicTacToe::humanoVsHumano()
                            else
                                graficoTablero[numero-1] = 'O';
 
-                           this->imprimirTablero();
+                           //this->imprimirTablero();
                            turnos = turnos+1;
                            correcto = 0;
                            ganaP1 = comprobarGanaP1();
@@ -466,15 +497,15 @@ void TicTacToe::humanoVsHumano()
 
                           }
 
-                      else
+                      /*else
                       {
                           cout<<"Error la casilla esta ocupada"<<endl;
                           cout<<endl;
-                      }
+                      }*/
                   }
 
-                  else
-                      cout<<"Error numero fuera de rango"<<endl;
+                  //else
+                      //cout<<"Error numero fuera de rango"<<endl;
               }
 
               if(ganaP1 == 1)
@@ -496,8 +527,7 @@ void TicTacToe::humanoVsHumano()
              while(correcto == 0)
              {
 
-                 cout<<endl;
-                 cout<<"P2 Ingrese valor de 1-9 para colocarlo en el tablero: ";
+
                  cin>>numero;
 
                  if(numero>=1 && numero<=9)
@@ -516,7 +546,7 @@ void TicTacToe::humanoVsHumano()
 
 
 
-                          this->imprimirTablero();
+                          //this->imprimirTablero();
                           turnos = turnos+1;
                           correcto = 0;
                           ganaP2 = comprobarGanaP2();
@@ -524,15 +554,15 @@ void TicTacToe::humanoVsHumano()
 
                          }
 
-                     else
+                     /*else
                      {
                          cout<<"Error la casilla esta ocupada"<<endl;
                          cout<<endl;
-                     }
+                     }*/
                  }
 
-                 else
-                     cout<<"Error numero fuera de rango"<<endl;
+                 //else
+                     //cout<<"Error numero fuera de rango"<<endl;
              }
          }
 
@@ -557,8 +587,8 @@ void TicTacToe::humanoVsHumano()
    cout<<"Desea volver a jugar?     (Y/N) : ";
    cin>>tryAgain;
 
-   if(tryAgain == 'Y' || tryAgain == 'y')
-   this->humanoVsHumano();
+   //if(tryAgain == 'Y' || tryAgain == 'y')
+   //this->humanoVsHumano();
 
 }
 
@@ -657,7 +687,7 @@ void TicTacToe::humanovsMaquina()
                             else
                                 graficoTablero[numero-1] = 'O';
 
-                            this->imprimirTablero();
+                            //this->imprimirTablero();
                             turnos = turnos+1;
                             correcto = 0;
                             ganaP1 = comprobarGanaP1();
@@ -715,7 +745,7 @@ void TicTacToe::humanovsMaquina()
 
 
 
-                           this->imprimirTablero();
+                           //this->imprimirTablero();
                            turnos = turnos+1;
                            correcto = 0;
                            ganaP2 = comprobarGanaP2();
@@ -783,7 +813,7 @@ void TicTacToe::humanovsMaquina()
 
 
 
-                           this->imprimirTablero();
+                           //this->imprimirTablero();
                            turnos = turnos+1;
                            correcto = 0;
                            ganaP2 = comprobarGanaP2();
@@ -845,7 +875,7 @@ void TicTacToe::humanovsMaquina()
                           else
                               graficoTablero[numero-1] = 'O';
 
-                          this->imprimirTablero();
+                          //this->imprimirTablero();
                           turnos = turnos+1;
                           correcto = 0;
                           ganaP1 = comprobarGanaP1();
