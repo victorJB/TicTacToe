@@ -30,6 +30,16 @@ Gato::Gato(QWidget *parent) :
     ui->radioButton_3->setChecked(true);
     ui->radioButton_5->setChecked(true);
 
+    ui->pushButton_1->setEnabled(false);
+    ui->pushButton_2->setEnabled(false);
+    ui->pushButton_3->setEnabled(false);
+    ui->pushButton_4->setEnabled(false);
+    ui->pushButton_5->setEnabled(false);
+    ui->pushButton_6->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);
+    ui->pushButton_8->setEnabled(false);
+    ui->pushButton_9->setEnabled(false);
+
 
 }
 
